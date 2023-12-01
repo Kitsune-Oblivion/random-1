@@ -1,24 +1,41 @@
 public class Repositorio{
+
+    /* variables */
     private Carta BD[];
     private int indice;
-    private Comparacao cm;
 
-
+    /* constructor */
     public Repositorio() {
-        BD = new Carta[28];
+        BD = new Carta[6];
         indice = 0;
-        cm = new Comparacao();
     }
 
-    public void inserir(Carta c) {
+    /* insert method */
+    public void insert(Carta c) {
         for (int i = 0; i < indice; i++) {
-            if ((cm.numeroValor(BD[i]) == cm.numeroValor(c)) & (cm.numeroNaipe(BD[i])) == (cm.numeroNaipe(c))) {
-                System.out.println("Cartas Iguais");
+            if ((BD[i].valor.equalsIgnoreCase(c.valor)) & (BD[i].naipe.equalsIgnoreCase(c.naipe))) {
+                System.out.println("As Cartas são Iguais");
             } else {
                 BD[indice] = c;
                 indice++;
-                System.out.println("Carta dada");
             }
+        }
+    }
+
+    /* remove method */
+    public void remove(Carta c) {
+        for (int i = 0; i < indice; i++) {
+            if (BD[i] == c) {
+                BD[i] = BD[indice - 1];
+                BD[indice - 1] = null;
+                indice--;
+            }
+        }
+    }
+
+    public void printAll() {
+        for (int i = 0; i < indice; i++) {
+            BD[i].print();
         }
     }
 }
